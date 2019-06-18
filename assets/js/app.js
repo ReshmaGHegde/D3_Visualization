@@ -27,7 +27,7 @@ d3.csv("assets/data/data.csv")
     data.forEach(function(data) {
       data.poverty = +data.poverty;
       data.healthcare = +data.healthcare;
-      data.abbr = +data.abbr;
+      data.abbr = data.abbr;
     });
 
 
@@ -60,15 +60,15 @@ var circlesGroup = chartGroup.selectAll("circle")
 .attr("cy", d => yLinearScale(d.healthcare))
 .attr("r", "10")
 .attr("fill", "lightgreen")
-//.append("text")
-//.append(function(data) { return data.abbr; })
+//.html("circle", function(data) { return `${data.abbr}`; })
+//.text("fill", "#69b3a2")
 .attr("opacity", "1");
 
 var toolTip = d3.tip()
   .attr("class", "tooltip")
   .offset([80, -60])
   .html(function(d) {
-    return (`<br>Poverty: ${d.poverty}<br>Healthcare: ${d.healthcare}`);
+    return (`Country Code:  ${d.abbr}<br>Poverty: ${d.poverty}<br>Healthcare: ${d.healthcare}`);
   });
 
  chartGroup.call(toolTip);
