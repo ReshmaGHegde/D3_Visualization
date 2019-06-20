@@ -60,9 +60,18 @@ var circlesGroup = chartGroup.selectAll("circle")
 .attr("cy", d => yLinearScale(d.healthcare))
 .attr("r", "10")
 .attr("fill", "lightgreen")
-//.html("circle", function(data) { return `${data.abbr}`; })
-//.text("fill", "#69b3a2")
 .attr("opacity", "1");
+
+chartGroup.selectAll(".dot")
+.data(data)
+.enter()
+.append("text")
+.text(function(data) { return data.abbr; })
+.attr("x", d => xLinearScale(d.poverty))
+.attr("y", d => yLinearScale(d.healthcare))
+.attr("font-size", "10px")
+.attr("fill", "black")
+.style("text-anchor", "middle");
 
 var toolTip = d3.tip()
   .attr("class", "tooltip")
